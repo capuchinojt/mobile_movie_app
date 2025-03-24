@@ -1,6 +1,5 @@
+import appLogo from "@/assets/images/app-icon.png"
+
 export const icons = {
-  home: "home",
-  search: "search",
-  profile: "profile",
-  saved: "saved",
+  logo: appLogo
 };

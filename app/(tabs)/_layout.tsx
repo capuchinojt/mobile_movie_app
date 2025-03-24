@@ -10,6 +10,7 @@ type TabIconProps = {
   color: string;
   size: number;
 };
+
 const TabIcon = ({ icon, focused, color, size, title }: TabIconProps) => {
   return (
     <View
@@ -20,7 +21,7 @@ const TabIcon = ({ icon, focused, color, size, title }: TabIconProps) => {
           ...(focused && styles.shadow), // Shadow động khi focused
         },
       ]}
-      className="flex-row flex-1 min-w-[112px] min-h-14 mt-4 items-center justify-center rounded-full overflow-hidden"
+      className="flex-row flex-1 min-w-[112px] min-h-16 mt-4 items-center justify-center rounded-full overflow-hidden"
     >
       <Ionicons
         name={
@@ -48,7 +49,28 @@ const TabIcon = ({ icon, focused, color, size, title }: TabIconProps) => {
 
 const _Layout = () => {
   return (
-    <Tabs>
+    <Tabs
+      screenOptions={{
+        tabBarShowLabel: false,
+        tabBarItemStyle: {
+          width: "100%",
+          height: "100%",
+          justifyContent: "center",
+          alignItems: "center"
+        },
+        tabBarStyle: {
+          backgroundColor: "#0f0D23",
+          borderRadius: 50,
+          marginHorizontal: 20,
+          marginBottom: 36,
+          height: 52,
+          position: "absolute",
+          overflow: "hidden",
+          borderWidth: 1,
+          borderColor: "#0f0D23"
+        }
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
@@ -121,7 +143,7 @@ const styles = StyleSheet.create({
   iconContainer: {
     width: 36, // Kích thước container
     height: 36,
-    borderRadius: 18, // Hình tròn
+    borderRadius: 50, // Hình tròn
     justifyContent: "center",
     alignItems: "center",
   },

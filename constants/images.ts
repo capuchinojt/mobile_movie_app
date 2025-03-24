@@ -1,4 +1,3 @@
-// import bg from "../assets/images/bg.jpg";
-// import hightlight from "../assets/images/highlight.png";
+import bg from "@/assets/images/bg.jpg";
 
-// export const images = { bg, hightlight };
+export const images = { bg };
