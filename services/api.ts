@@ -21,7 +21,6 @@ export const fetchMovies = async ({ query }: { query: string }) => {
 
   try {
     const res = await axios.request(options);
-    console.log("Check res data:: ", res?.data?.results)
     if (!res?.data) {
       throw new Error(`Failed to fetch movies: ${res.status}`);
     }
