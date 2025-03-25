@@ -1,5 +1,5 @@
 import React from "react";
-import { ActivityIndicator, Image, Text, TouchableHighlight, View } from "react-native";
+import { ActivityIndicator, Image, Text, View } from "react-native";
 import { useRouter } from 'expo-router';
 import { FlatList } from "react-native";
 
@@ -7,8 +7,9 @@ import SearchBar from "@/components/SearchBar";
 import { icons } from "@/constants/icons";
 import { images } from "@/constants/images";
 import useFetch from "@/services/useFetch";
-import { fetchMovies } from "@/services/api";
+import { fetchMovies, fetchPopularMovies } from "@/services/api";
 import MovieCard from "@/components/MovieCard";
+import TrendingCard from "@/components/TrendingCard";
 
 export default function Index() {
   const router = useRouter();
@@ -18,6 +19,12 @@ export default function Index() {
     error: moviesError,
   } = useFetch(() => fetchMovies({ query: "" }));
 
+  const {
+    data: popularMovies,
+    loading: popularMoviesLoading,
+    error: popularMoviesError,
+  } = useFetch(() => fetchPopularMovies());
+
   const ListHeaderComponent = () => (
     <>
       <Image source={icons.logo} className="w-12 h-10 mt-20 mb-5 mx-auto"/>
@@ -25,8 +32,31 @@ export default function Index() {
         onPress={() => router.push('/search')}
         placeholder="Search for a movie or TV show"
       />
+      {
+        popularMovies && (
+          <View>
+            <View className="mt-10">
+              <Text className="text-lg text-white font-bold">Popular Movies</Text>
+            </View>
+
+            <FlatList
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              ItemSeparatorComponent={() => <View className="w-3" />}
+              data={popularMovies}
+              renderItem={({ item, index }) => {
+              console.log("Check item:: ", item);
+                return (
+                  <TrendingCard movie={item} index={index} />
+                )
+              }}
+              keyExtractor={(item) => item.id.toString()}
+            />
+          </View>
+        )
+      }
       <Text className="text-lg text-white font-bold mt-5 mb-3">
-        Popular Movies
+        Latest Movies
       </Text>
     </>
   );
@@ -49,7 +79,7 @@ export default function Index() {
             numColumns={3}
             columnWrapperStyle={{ justifyContent: "flex-start", gap: 20, paddingRight: 5, marginBottom: 10 }}
             ListHeaderComponent={ListHeaderComponent}
-            contentContainerStyle={{ paddingBottom: 10 }}
+            contentContainerStyle={{ paddingBottom: 100 }}
             className="mt-2 pb-32"
             scrollEnabled={true}
           />

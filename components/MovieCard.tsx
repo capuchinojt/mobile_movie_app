@@ -13,14 +13,14 @@ const MovieCard = ({
   // console.log("Check poster path:: ", poster_path);
   return (
     <Link href={`/movies/${id}`} asChild>
-      <TouchableOpacity className="w-[30%]">
+      <TouchableOpacity className="w-[30%] pb-4">
         <Image
           source={{
             uri: poster_path
               ? `https://image.tmdb.org/t/p/w500${poster_path}`
               : "https://via.placeholder.com/600x400/1a1a1a/ffffff.png",
           }}
-          className="w-full h-52 rounded-lg"
+          className="w-full max-sm:h-52 h-64 rounded-lg"
           resizeMode="cover"
         />
 
@@ -33,7 +33,6 @@ const MovieCard = ({
 
         <View className="flex-row items-center justify-between">
           <Text className="text-xs text-light-300 font-medium">{release_date?.split("-")[0]}</Text>
-          <Text className="text-sm font-medium text-light-300 uppercase">Movie</Text>
         </View>
       </TouchableOpacity>
     </Link>

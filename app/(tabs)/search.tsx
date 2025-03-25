@@ -44,11 +44,11 @@ const Search = () => {
         keyExtractor={(item) => item.id.toString()}
         className="px-5"
         numColumns={3}
-        columnWrapperStyle={{ justifyContent: "center", gap: 16, marginVertical: 16 }}
+        columnWrapperStyle={{ justifyContent: "center", gap: 20, marginVertical: 5 }}
         contentContainerStyle={{ paddingBottom: 100, paddingTop: 20 }}
         ListHeaderComponent={
           <>
-            <View className="w-full flex-row items-center justify-center mt-5">
+            <View className="w-full flex-row items-center justify-center">
               <Image source={icons.logo} className="w-12 h-10"/>
             </View>
 

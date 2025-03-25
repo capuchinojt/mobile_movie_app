@@ -33,10 +33,15 @@ interface MovieDetail {
   release_date: string;
   vote_average: number;
   vote_count: number;
-  genre_ids: number[];
+  genres: any;
   original_language: string;
   original_title: string;
   video: boolean;
   adult: boolean;
   popularity: number;
+  runtime: number;
+  production_countries: any[];
+  budget: number;
+  revenue: number;
+  production_companies: any[];
 }
